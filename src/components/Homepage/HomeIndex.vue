@@ -5,7 +5,7 @@
         <div class="container">
           <h1 class="page-title text-center">We're coming soon</h1>
           <h4 class="text-center text-bold">
-            Ehealth4everyone Performpraisal Platform
+            Ehealth4everyone Performance Appraisal Platform
           </h4>
         </div>
       </main>

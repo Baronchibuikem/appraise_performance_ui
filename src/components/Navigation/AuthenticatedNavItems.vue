@@ -2,46 +2,52 @@
   <div>
     <md-list-item>
       <!-- <md-icon>move_to_inbox</md-icon> -->
-      <span
-        class="md-list-item-text sidebar-items mb-5"
-        style="margin-top: 120px"
-        >Home</span
-      >
+      <span class="md-list-item-text sidebar-items mt-5 pt-5">Home</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>send</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">View Teams</span>
+      <span class="md-list-item-text sidebar-items">View Teams</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">Appraisals</span>
+      <span class="md-list-item-text sidebar-items">Appraisals</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">Change Password</span>
+      <span class="md-list-item-text sidebar-items">Change Password</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">All Staff</span>
+      <span class="md-list-item-text sidebar-items">All Staff</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">FAQ</span>
+      <span class="md-list-item-text sidebar-items">FAQ</span>
     </md-list-item>
+    <hr />
 
     <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">Contact Support</span>
+      <span class="md-list-item-text sidebar-items">Contact Support</span>
     </md-list-item>
-    <md-list-item @click="handle_logout">
+    <hr />
+    <md-list-item>
       <!-- <md-icon>error</md-icon> -->
-      <span class="md-list-item-text sidebar-items my-5">Logout</span>
+      <span class="md-list-item-text sidebar-items" @click="handle_logout"
+        >Logout</span
+      >
     </md-list-item>
+    <hr />
   </div>
 </template>
 

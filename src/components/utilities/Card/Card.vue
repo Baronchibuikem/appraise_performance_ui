@@ -1,18 +1,10 @@
 <template>
   <div>
     <md-card>
-      <md-card-header>
-        <md-avatar>
-          <img :src="image" alt="Avatar" />
-        </md-avatar>
-
-        <div class="md-title">Title goes here</div>
-        <div class="md-subhead">Subtitle here</div>
-      </md-card-header>
-
+      <!-- 
       <md-card-media>
         <img :src="image" alt="People" />
-      </md-card-media>
+      </md-card-media> -->
 
       <md-card-content>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio itaque
@@ -31,6 +23,11 @@
 import image from "../../../assets/images/default.jpg";
 export default {
   name: "Layouts",
+  props: {
+    title: {
+      type: Object,
+    },
+  },
   data() {
     return {
       image: image,

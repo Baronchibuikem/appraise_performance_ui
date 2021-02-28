@@ -3,6 +3,9 @@
     <div class="col-md-5 mx-auto">
       <h5 class="text-center">Login</h5>
       <form @submit.prevent="handle_login">
+        <span v-if="this.get_server_error_status">{{
+          this.get_server_error_message
+        }}</span>
         <md-field md-clearable>
           <md-input
             type="email"
@@ -22,27 +25,21 @@
         </md-field>
         <div>
           <div v-if="get_current_status === false">
-            <md-button
-              type="submit"
-              class="md-raised form-control md-primary"
-             
+            <md-button type="submit" class="md-raised form-control md-primary"
               >Login</md-button
             >
           </div>
           <div
-            class=" text-dark"
+            class="text-dark"
             role="status"
             v-if="get_current_status === true"
           >
-           <md-button
-              type="submit"
-              class="md-raised form-control md-primary"
-              >
-            Loading...</md-button
+            <md-button type="submit" class="md-raised form-control md-primary">
+              Loading...</md-button
             >
           </div>
         </div>
-        
+
         <div class="text-center">
           <span
             >Don't have an account?
@@ -62,25 +59,29 @@ export default {
     return {
       email: "",
       password: "",
-      loading: false
+      loading: false,
     };
   },
   methods: {
     handle_login() {
-      this.loading = true;
       const reg_values = {
         email: this.email,
         password: this.password,
       };
       this.$store.dispatch("login", reg_values);
-      if (this.get_server_error) {
-        this.$toasted.show(this.get_server_error, { duration: 3000 });
-      }
-      this.loading = false
+      // if (this.get_server_error_status === true) {
+      //   this.$toasted.show(this.get_server_error_message, { duration: 9000 });
+      // } else {
+      //   this.$toasted.show("You are now logged in", { duration: 5000 });
+      // }
     },
   },
   computed: {
-    ...mapGetters(["get_server_error", "get_current_status"]),
+    ...mapGetters([
+      "get_server_error_status",
+      "get_server_error_message",
+      "get_current_status",
+    ]),
   },
 };
 </script>

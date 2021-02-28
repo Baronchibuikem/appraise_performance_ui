@@ -10,11 +10,13 @@ const state = {
   is_authenticated: false,
   token: localStorage.getItem("token") || "",
   user: {},
-  server_error: {},
+  server_error_status: false,
+  server_error_message: {},
 };
 const getters = {
   get_current_user: (state) => state.user,
-  get_server_error: (state) => state.server_error,
+  get_server_error_status: (state) => state.server_error_status,
+  get_server_error_message: (state) => state.server_error_message,
   get_is_user_authenticated: (state) => state.is_authenticated,
   get_current_status: (state) => state.status,
 };
@@ -22,6 +24,7 @@ const getters = {
 const actions = {
   async login({ commit, dispatch }, payload) {
     commit("POST_REQUEST");
+    commit("CLEAR_SERVER_ERROR");
     try {
       // this makes a call to the server defined in the authentication_api_calls inside the server_side_api_calls folder
       const response = await user_login(payload);
@@ -37,9 +40,8 @@ const actions = {
         dispatch("currentUser", decoded);
       }
     } catch (error) {
-      console.log(error.response.data.message, "Error");
-      //   commit("SERVER_ERROR", error.response.data.message);
-      //   commit("POST_RESPONSE");
+      commit("POST_RESPONSE");
+      commit("SERVER_ERROR", error.response.data.detail);
     }
   },
 
@@ -84,10 +86,12 @@ const mutations = {
     state.status = false;
   },
   SERVER_ERROR(state, payload) {
-    state.server_error = payload;
+    state.server_error_status = true;
+    state.server_error_message = payload;
   },
   CLEAR_SERVER_ERROR(state) {
-    state.server_error = {};
+    state.server_error_status = false;
+    state.server_error_message = {};
   },
   REGISTRATION_SUCCESSFUL(state, payload) {
     state.user = payload;
