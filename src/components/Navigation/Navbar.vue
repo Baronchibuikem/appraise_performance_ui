@@ -1,27 +1,23 @@
 <template>
   <div class="page-container md-layout-column md-elevation-1">
-      <md-toolbar class="md-primary" md-fixed style="position: fixed">
+    <md-toolbar class="md-primary" md-fixed style="position: fixed">
       <md-button class="md-icon-button" @click="showNavigation = true">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title"
-        >Appraisal Management Platform </span
-      >
+      <span class="md-title">Appraisal Management Platform </span>
     </md-toolbar>
 
     <md-drawer
       :md-active.sync="showNavigation"
       md-swipeable
-      :md-click-outside-to-close="true"      
+      :md-click-outside-to-close="true"
       md-fixed
     >
-      
-
       <md-list v-if="get_is_user_authenticated">
-        <AuthNavItem/>
+        <AuthNavItem />
       </md-list>
       <md-list v-else class="md-transparent" md-elevation="0">
-         <UnauthNavItem/>
+        <UnauthNavItem />
       </md-list>
     </md-drawer>
   </div>
@@ -29,32 +25,30 @@
 
 <script>
 import { mapGetters } from "vuex";
-import UnauthNavItem from "./UnauthenticatedNavItems"
-import AuthNavItem from "./AuthenticatedNavItems"
+import UnauthNavItem from "./UnauthenticatedNavItems";
+import AuthNavItem from "./AuthenticatedNavItems";
 
 export default {
-    name: "Navbar",
-    components: {
-        UnauthNavItem,
-        AuthNavItem
-    },
-    data(){
-        return({
-        showNavigation: false,
-        showSidepanel: false,
-        })
+  name: "Navbar",
+  components: {
+    UnauthNavItem,
+    AuthNavItem,
+  },
+  data() {
+    return {
+      showNavigation: false,
+      showSidepanel: false,
+    };
   },
   computed: {
-      ...mapGetters(["get_is_user_authenticated"]),
-  }
-
-}
+    ...mapGetters(["get_is_user_authenticated"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 .page-container[data-v-5c9e19ea] {
-    border: none !important;
+  border: none !important;
 }
 
 .page-container {
@@ -88,7 +82,8 @@ export default {
   }
 }
 
-.v-application ul, .v-application ol {
-    padding-left: 0px !important
+.v-application ul,
+.v-application ol {
+  padding-left: 0px !important;
 }
 </style>

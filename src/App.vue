@@ -9,12 +9,12 @@
 
 <script>
 const Navbar = () => import("./components/Navigation/Navbar");
-const Footer = () => import("./components/Footer/Footer");
+// const Footer = () => import("./components/Footer/Footer");
 export default {
   name: "App",
   components: {
     Navbar,
-    Footer,
+    // Footer,
   },
 };
 </script>

@@ -1,48 +1,116 @@
 <template>
   <v-app>
-    <Carousel />
-    <div class="row">
-      <div class="col-md-3 mt-2">
-        <h6 class="text-center">Total Courses</h6>
-        <p class="text-center">200</p>
-      </div>
-      <div class="col-md-3 mt-2">
-        <h6 class="text-center">Lastest Course</h6>
-        <p class="text-center">Building user authentication in Django</p>
-      </div>
-      <div class="col-md-3 mt-2">
-        <h6 class="text-center">Total free Course</h6>
-        <p class="text-center">150</p>
-      </div>
-      <div class="col-md-3 mt-2">
-        <h6 class="text-center">Total Premium Course</h6>
-        <p class="text-center">50</p>
-      </div>
-    </div>
-    <hr/>
-    <div class="container">
-      <div class="md-title text-center">Featured Courses</div>
-      <div class="row">
-        <div class="col-md-4"><Card/></div>
-        <div class="col-md-4"><Card /></div>
-        <div class="col-md-4"><Card /></div>
-      </div>
-    </div>
-
-    <div style="min-height: 50vh; background-color: blue"></div>
+    <body class="min-vh-100 d-flex flex-column">
+      <main class="my-auto">
+        <div class="container">
+          <h1 class="page-title text-center">We're coming soon</h1>
+          <h4 class="text-center text-bold">
+            Ehealth4everyone Performpraisal Platform
+          </h4>
+        </div>
+      </main>
+    </body>
   </v-app>
 </template>
 
 <script>
-import Carousel from "./CarouselSlider";
-import Card from "../utilities/Card/Card";
-export default {
-  components: {
-    Carousel,
-    Card,
-  },
-};
+export default {};
 </script>
 
-<style>
+<style scoped>
+body {
+  font-family: "Karla", sans-serif;
+  background-image: url("../../assets/images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #ffffff;
+  padding-bottom: 75px;
+}
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 110px;
+  }
+}
+
+.navbar-brand {
+  margin-right: 0;
+}
+.navbar-brand img {
+  height: 21px;
+}
+
+.navbar-dark {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+.navbar-dark .navbar-text {
+  color: #ffffff;
+  opacity: 1;
+  padding: 0 20px;
+  border-right: 1px solid #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.navbar-dark .navbar-text:last-child {
+  border-right: 0;
+}
+@media (max-width: 767px) {
+  .navbar-dark {
+    padding-bottom: 0;
+  }
+}
+
+.page-title {
+  font-size: 80px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+@media (max-width: 767px) {
+  .page-title {
+    font-size: 35px;
+    margin-bottom: 14px;
+  }
+}
+
+.page-description {
+  max-width: 465px;
+  font-size: 18px;
+  margin-bottom: 59px;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .page-description {
+    font-size: 14px;
+  }
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 21px;
+}
+
+.footer-social-links .social-link {
+  display: inline-block;
+  text-align: center;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  margin-right: 16px;
+  transition: all 0.3s ease-in-out;
+}
+.footer-social-links .social-link:last-child {
+  margin-right: 0;
+}
+.footer-social-links .social-link:hover {
+  text-decoration: none;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=bd-coming-soon.css.map */
 </style>
