@@ -116,23 +116,26 @@ export default {
     };
   },
   methods: {
-    handle_register() {
+    // for user registration
+    async handle_register() {
       const reg_values = {
         email: this.email,
         first_name: this.first_name,
         last_name: this.last_name,
         password: this.password,
-        confirm_password: this.confirm_password,
-        subteam: this.selected_subteam,
+        subteam_name: this.selected_subteam,
       };
-      console.log(reg_values, "registration values");
-      // const response = this.$store.dispatch("register", reg_values);
-      // if (response.status === 200) {
-      //   this.$router.push("/registration/email-sent");
-      // } else {
-      //   this.$toasted.show(this.get_server_error, { duration: 3000 });
-      // }
+      // dispatching the register action with user values
+      this.$store
+        .dispatch("register", reg_values)
+        .then(() =>
+          this.$toasted.show("Registration successful", { duration: 9000 })
+        )
+        .catch(() => {
+          this.$toasted.show(this.get_server_error, { duration: 9000 });
+        });
     },
+    // used to trigger the subteam action
     ...mapActions(["subteam_action"]),
   },
   computed: {

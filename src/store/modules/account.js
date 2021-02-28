@@ -43,6 +43,19 @@ const actions = {
     }
   },
 
+  async register({ commit }, payload) {
+    commit("POST_REQUEST");
+    try {
+      const response = await user_register(payload);
+      if (response.status === 201) {
+        router.push("/login");
+      }
+    } catch (error) {
+      commit("SERVER_ERROR", error.response.data);
+      commit("POST_RESPONSE");
+    }
+  },
+
   // used for updating the state for a current logged in user
   async currentUser({ commit }, payload) {
     commit("POST_RESPONSE");
@@ -60,18 +73,6 @@ const actions = {
   async logout({ dispatch }) {
     localStorage.removeItem("token");
     dispatch("currentUser", false);
-  },
-
-  async register({ commit }, payload) {
-    commit("POST_REQUEST");
-    try {
-      const response = await user_register(payload);
-      commit("REGISTRATION_SUCCESSFUL", response.data);
-      commit("POST_RESPONSE");
-    } catch (error) {
-      commit("SERVER_ERROR", error.response.data);
-      commit("POST_RESPONSE");
-    }
   },
 };
 

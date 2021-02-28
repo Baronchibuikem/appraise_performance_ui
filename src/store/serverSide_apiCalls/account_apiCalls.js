@@ -13,7 +13,10 @@ const user_login = async (payload) => {
 
 // register api call to the server
 const user_register = (payload) => {
-  const response = axios.post(`${base_domain_route}/register/`, payload);
+  const response = axios.post(
+    `${base_domain_route}/account/register/`,
+    payload
+  );
   return response;
 };
 
