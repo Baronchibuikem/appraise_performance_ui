@@ -20,4 +20,10 @@ const user_register = (payload) => {
   return response;
 };
 
-export { user_login, user_register };
+// invite a user through email
+const post_user_invite = (payload) => {
+  const response = axios.post(`${base_domain_route}/account/send-invite/`, payload)
+  return response
+}
+
+export { user_login, user_register, post_user_invite};

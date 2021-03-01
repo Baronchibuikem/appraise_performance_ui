@@ -4,7 +4,14 @@
       <md-button class="md-icon-button" @click="showNavigation = true">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title">Appraisal Management Platform </span>
+      <span class="md-title" style="flex: 1">Appraisal Management Platform </span>
+      <form @submit.prevent="send_invite">
+      <div class="d-flex">
+        <input type="email" class="form-control mt-1" placeholder="Invite a user" v-model="email"/>
+       
+      <md-button type="submit" class="md-raised mb-3">Send</md-button>
+      </div>
+      </form>
     </md-toolbar>
 
     <md-drawer
@@ -38,11 +45,23 @@ export default {
     return {
       showNavigation: false,
       showSidepanel: false,
+      email: ""
     };
   },
   computed: {
-    ...mapGetters(["get_is_user_authenticated"]),
+    ...mapGetters(["get_is_user_authenticated", "get_server_response"]),
   },
+  methods: {
+    send_invite(){
+      const email = this.email
+      this.$store.dispatch("invite_user", email);
+    },
+    show_notification(){
+      if(Object.keys(this.get_server_response) !== 0){
+          this.$toasted.show("Invite successfully sent", { duration: 9000 });
+            }
+    }
+  }
 };
 </script>
 
