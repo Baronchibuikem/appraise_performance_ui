@@ -1,6 +1,14 @@
 <template>
   <div>
     <md-card>
+      <md-card-header>
+        <md-avatar>
+          <img :src="image" alt="Avatar" />
+        </md-avatar>
+
+        <div class="md-title">{{ title }}</div>
+        <div class="md-subhead">Subtitle here</div>
+      </md-card-header>
       <!-- 
       <md-card-media>
         <img :src="image" alt="People" />

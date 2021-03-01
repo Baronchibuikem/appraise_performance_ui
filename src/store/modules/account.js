@@ -1,6 +1,7 @@
 import {
   user_register,
-  user_login, post_user_invite 
+  user_login,
+  post_user_invite,
 } from "../serverSide_apiCalls/account_apiCalls";
 import router from "../../router";
 import jwt_decode from "jwt-decode";
@@ -12,7 +13,7 @@ const state = {
   user: {},
   server_error_status: false,
   server_error_message: {},
-  server_response : {}
+  server_response: {},
 };
 const getters = {
   get_current_user: (state) => state.user,
@@ -20,7 +21,7 @@ const getters = {
   get_server_error_message: (state) => state.server_error_message,
   get_is_user_authenticated: (state) => state.is_authenticated,
   get_current_status: (state) => state.status,
-  get_server_response: (state) => state.server_response
+  get_server_response: (state) => state.server_response,
 };
 
 const actions = {
@@ -79,13 +80,18 @@ const actions = {
     dispatch("currentUser", false);
   },
 
-  async invite_user({commit}, payload){
-    commit("POST_REQUEST");
-    const response = await post_user_invite (payload)
+  async invite_user({ commit }, payload) {
     commit("POST_RESPONSE");
-    commit("SERVER_RESPONSE", response)
-    
-  }
+    commit("POST_REQUEST");
+    try {
+      const response = await post_user_invite(payload);
+      commit("POST_RESPONSE");
+      commit("SERVER_RESPONSE", response);
+    } catch (error) {
+      commit("POST_RESPONSE");
+      commit("SERVER_ERROR", error.response.data.message);
+    }
+  },
 };
 
 const mutations = {
@@ -99,8 +105,8 @@ const mutations = {
     state.server_error_status = true;
     state.server_error_message = payload;
   },
-  SERVER_RESPONSE(state, payload){
-    state.server_response = payload
+  SERVER_RESPONSE(state, payload) {
+    state.server_response = payload;
   },
   CLEAR_SERVER_ERROR(state) {
     state.server_error_status = false;
