@@ -7,6 +7,16 @@
       <span class="md-title" style="flex: 1"
         >Appraisal Management Platform
       </span>
+      <span
+        class="mr-5"
+        v-if="Object.keys(this.get_server_error_message) !== 0"
+        >{{ this.get_server_error_message }}</span
+      >
+      <span
+        class="mr-5"
+        v-if="Object.keys(this.get_server_error_message) === 0"
+      ></span>
+
       <form @submit.prevent="send_invite">
         <div class="d-flex">
           <input
@@ -15,9 +25,6 @@
             placeholder="Invite a user"
             v-model="email"
           />
-          <small v-if="get_current_status">{{
-            this.get_server_response
-          }}</small>
 
           <md-button
             type="submit"
@@ -72,17 +79,19 @@ export default {
   computed: {
     ...mapGetters([
       "get_is_user_authenticated",
-      "get_server_response",
+      "get_server_error_message",
       "get_current_status",
+      "get_server_response",
     ]),
   },
   methods: {
+    // for dispatching an action to send an email invite to a user
     send_invite() {
       const email = this.email;
       this.$store.dispatch("invite_user", email);
     },
     show_notification() {
-      if (Object.keys(this.get_server_response) !== 0) {
+      if (Object.keys(this.get_server_error_message) !== 0) {
         this.$toasted.show("Invite successfully sent", { duration: 9000 });
       }
     },

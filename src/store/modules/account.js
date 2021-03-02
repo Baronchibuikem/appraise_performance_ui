@@ -81,15 +81,19 @@ const actions = {
   },
 
   async invite_user({ commit }, payload) {
+    commit("CLEAR_SERVER_ERROR");
     commit("POST_RESPONSE");
     commit("POST_REQUEST");
     try {
       const response = await post_user_invite(payload);
       commit("POST_RESPONSE");
-      commit("SERVER_RESPONSE", response);
+      commit("SERVER_RESPONSE", response.data.message);
     } catch (error) {
       commit("POST_RESPONSE");
       commit("SERVER_ERROR", error.response.data.message);
+      setTimeout(() => {
+        commit("CLEAR_SERVER_ERROR");
+      }, 3000);
     }
   },
 };
@@ -110,7 +114,7 @@ const mutations = {
   },
   CLEAR_SERVER_ERROR(state) {
     state.server_error_status = false;
-    state.server_error_message = {};
+    state.server_error_message = "";
   },
   REGISTRATION_SUCCESSFUL(state, payload) {
     state.user = payload;
