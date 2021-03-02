@@ -31,4 +31,14 @@ const post_user_invite = async (payload) => {
   return response;
 };
 
-export { user_login, user_register, post_user_invite };
+const password_change = async (payload) => {
+  const {old_password, password, password2, id} = payload
+  const response = await axios.post(
+     `${base_domain_route}/account//account/password-change/${id}/`,{
+       old_password, password, password2
+     }
+  )
+  return response
+}
+
+export { user_login, user_register, post_user_invite, password_change };

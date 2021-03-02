@@ -1,8 +1,5 @@
 import {
-  user_register,
-  user_login,
-  post_user_invite,
-} from "../serverSide_apiCalls/account_apiCalls";
+  user_register, user_login,  post_user_invite,password_change} from "../serverSide_apiCalls/account_apiCalls";
 import router from "../../router";
 import jwt_decode from "jwt-decode";
 
@@ -96,6 +93,15 @@ const actions = {
       }, 3000);
     }
   },
+
+  async change_password({commit}, payload){
+   try {
+     const response = await password_change(payload)
+     commit("SERVER_RESPONSE", response.data);
+   } catch (error) {
+    commit("SERVER_ERROR", error.response.data);
+   }
+  }
 };
 
 const mutations = {

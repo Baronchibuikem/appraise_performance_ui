@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 export default {
   data() {
     return {
@@ -52,12 +53,18 @@ export default {
       const reg_values = {
         old_password: this.old_password,
         password: this.password,
-        password2: this.password2
+        password2: this.password2,
+        id: this.get_current_user.user_id
       };
       console.log(reg_values)
-      this.$store.dispatch("change-password", reg_values);
+      // this.$store.dispatch("change-password", reg_values);
     },
-  }
+  },
+   computed: {
+    ...mapGetters([
+      "get_current_user"
+    ]),
+  },
 };
 </script>
 

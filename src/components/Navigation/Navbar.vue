@@ -7,6 +7,7 @@
       <span class="md-title" style="flex: 1"
         >Appraisal Management Platform
       </span>
+      <h4></h4>
       <span
         class="mr-5"
         v-if="Object.keys(this.get_server_error_message) !== 0"
@@ -82,6 +83,7 @@ export default {
       "get_server_error_message",
       "get_current_status",
       "get_server_response",
+      "get_current_user"
     ]),
   },
   methods: {
