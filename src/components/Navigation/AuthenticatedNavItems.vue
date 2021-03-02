@@ -19,8 +19,9 @@
     <hr />
 
     <md-list-item>
-      <!-- <md-icon>error</md-icon> -->
+      <router-link to="/change-password">
       <span class="md-list-item-text sidebar-items">Change Password</span>
+      </router-link>
     </md-list-item>
     <hr />
 

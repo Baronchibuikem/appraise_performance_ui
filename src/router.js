@@ -23,11 +23,11 @@ let router =  new Router({
             path: "/signup",
             component: () => import("./components/Authentication/Registration"),
         }, 
-        {
-            name: "RegistrationEmailSent",
-            path: '/email-sent',
-            component: () => import("./components/EmailSent/RegistrationEmailSent")
-        },   
+        // {
+        //     name: "RegistrationEmailSent",
+        //     path: '/email-sent',
+        //     component: () => import("./components/EmailSent/RegistrationEmailSent")
+        // },   
         
         {
             name: "Login",
@@ -41,32 +41,15 @@ let router =  new Router({
             meta: {
 				requiresAuth: true,
 			},
-        }            
-        // {
-        //     name: "AuthCentralController",
-        //     path: "/auth",
-        //     component: () => import("./components/Authentication/AuthCentralController"),
-        //     children:[
-        //         {
-        //             name: "Registration",
-        //             path: "signup",
-        //             component: () => import("./components/Authentication/Registration"),
-        //         },
-        //         {
-        //         // We be rendered if registration is successful
-        //         name: "RegistrationEmailSent",
-        //         path: 'email-sent',
-        //         component: () => import("./components/EmailSent/RegistrationEmailSent")
-        //         },
-        //         {
-        //             name: "Login",
-        //             path: "login",
-        //             component: () => import("./components/Authentication/Login"),
-        //         },
-        //     ]
-        // },
-                
-       
+        },           
+        {
+            name: "ChangePassword",
+            path: "/change-password",
+            component: () => import("./components/Authentication/ChangePassword"),
+            meta: {
+				requiresAuth: true,
+			},
+        }
 
         
     ]
