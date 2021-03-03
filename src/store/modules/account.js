@@ -1,7 +1,12 @@
 import {
-  user_register, user_login,  post_user_invite,password_change} from "../serverSide_apiCalls/account_apiCalls";
+  user_register,
+  user_login,
+  post_user_invite,
+  password_change,
+} from "../serverSide_apiCalls/account_apiCalls";
 import router from "../../router";
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 const state = {
   status: false,
@@ -19,6 +24,7 @@ const getters = {
   get_is_user_authenticated: (state) => state.is_authenticated,
   get_current_status: (state) => state.status,
   get_server_response: (state) => state.server_response,
+  getToken: (state) => state.token,
 };
 
 const actions = {
@@ -77,7 +83,7 @@ const actions = {
     dispatch("currentUser", false);
   },
 
-  async invite_user({ commit }, payload) {
+  async invite_user({ commit, dispatch }, payload) {
     commit("CLEAR_SERVER_ERROR");
     commit("POST_RESPONSE");
     commit("POST_REQUEST");
@@ -88,20 +94,35 @@ const actions = {
     } catch (error) {
       commit("POST_RESPONSE");
       commit("SERVER_ERROR", error.response.data.message);
-      setTimeout(() => {
-        commit("CLEAR_SERVER_ERROR");
-      }, 3000);
+      dispatch("clear_errors", 5000);
     }
   },
 
-  async change_password({commit}, payload){
-   try {
-     const response = await password_change(payload)
-     commit("SERVER_RESPONSE", response.data);
-   } catch (error) {
-    commit("SERVER_ERROR", error.response.data);
-   }
-  }
+  async change_password({ commit, dispatch, getters }, payload) {
+    let config = {
+      headers: {
+        Authorization: `Token ${getters.getToken}`,
+        // "Content-Type": "application/json"
+      },
+    };
+    console.log(config, "token");
+    commit("CLEAR_SERVER_ERROR");
+    commit("POST_RESPONSE");
+    try {
+      const response = await password_change(payload, config);
+      axios.defaults.headers.common["Authorization"] = config;
+      commit("SERVER_RESPONSE", response.data);
+    } catch (error) {
+      commit("SERVER_ERROR", error.response.data);
+      dispatch("clear_errors", 5000);
+    }
+  },
+
+  async clear_errors({ commit }, time) {
+    setTimeout(() => {
+      commit("CLEAR_SERVER_ERROR");
+    }, time);
+  },
 };
 
 const mutations = {
