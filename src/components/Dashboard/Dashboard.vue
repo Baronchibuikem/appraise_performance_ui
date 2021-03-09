@@ -5,7 +5,7 @@
       <div class="col-md-4">
         <md-card>
           <div class="md-title text-center mt-3">
-            <a href="#">view all staff</a>
+            <router-link to="/team-members">view all staff</router-link>
           </div>
           <md-card-content>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
@@ -16,7 +16,7 @@
       <div class="col-md-4">
         <md-card>
           <div class="md-title text-center mt-3">
-            <a href="#">Appraisals</a>
+            <router-link to="/appraisals">Appraisals</router-link>
           </div>
           <md-card-content>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio

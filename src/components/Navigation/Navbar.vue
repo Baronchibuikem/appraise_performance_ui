@@ -7,16 +7,16 @@
       <span class="md-title" style="flex: 1"
         >Appraisal Management Platform
       </span>
-      <h4></h4>
-      <span
-        class="mr-5"
-        v-if="Object.keys(this.get_server_error_message) !== 0"
-        >{{ this.get_server_error_message }}</span
-      >
-      <span
-        class="mr-5"
-        v-if="Object.keys(this.get_server_error_message) === 0"
-      ></span>
+      <div v-if="this.get_current_user.is_staff">
+        <span
+          class="mr-5"
+          v-if="Object.keys(this.get_server_error_message) !== 0"
+          >{{ this.get_server_error_message }}</span
+        >
+        <span
+          class="mr-5"
+          v-if="Object.keys(this.get_server_error_message) === 0"
+        ></span>
 
       <form @submit.prevent="send_invite">
         <div class="d-flex">
@@ -41,6 +41,7 @@
           >
         </div>
       </form>
+      </div>
     </md-toolbar>
 
     <md-drawer
@@ -91,11 +92,6 @@ export default {
     send_invite() {
       const email = this.email;
       this.$store.dispatch("invite_user", email);
-    },
-    show_notification() {
-      if (Object.keys(this.get_server_error_message) !== 0) {
-        this.$toasted.show("Invite successfully sent", { duration: 9000 });
-      }
     },
   },
 };

@@ -1,20 +1,23 @@
 <template>
   <div>
     <md-list-item>
-      <!-- <md-icon>move_to_inbox</md-icon> -->
-      <span class="md-list-item-text sidebar-items mt-5 pt-5">Home</span>
+      <router-link to="/dashboard">
+        <span class="md-list-item-text sidebar-items mt-5 pt-5">Dashboard</span>
+      </router-link>
     </md-list-item>
     <hr />
 
     <md-list-item>
-      <!-- <md-icon>send</md-icon> -->
+      <router-link to="/team-members">
       <span class="md-list-item-text sidebar-items">View Teams</span>
+      </router-link>
     </md-list-item>
     <hr />
 
     <md-list-item>
-      <!-- <md-icon>error</md-icon> -->
+      <router-link to="/appraisals">
       <span class="md-list-item-text sidebar-items">Appraisals</span>
+      </router-link>
     </md-list-item>
     <hr />
 

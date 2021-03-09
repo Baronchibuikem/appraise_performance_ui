@@ -49,7 +49,25 @@ let router =  new Router({
             meta: {
 				requiresAuth: true,
 			},
+        },
+        {
+            name: "UserList",
+            path: "/team-members",
+            component: () => import("./components/sections/UserList"),
+            meta: {
+				requiresAuth: true,
+			},
+        },
+        {
+            name: "Appraisal List",
+            path: "/appraisals",
+            component: () => import("./components/Appraisal/AppraisalList"),
+            meta: {
+				requiresAuth: true,
+			},
         }
+
+
 
         
     ]
