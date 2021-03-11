@@ -52,7 +52,7 @@
           <md-table-cell>{{ member.appraisee_user_name }}</md-table-cell>
           <md-table-cell>{{ member.completed }}</md-table-cell>
           <md-table-cell>{{ member.quarter }}</md-table-cell>
-          <md-table-cell><span @click="view_appraisal(member.quarter, member.appraisee_user_id )">View Appraisal</span></md-table-cell>
+          <md-table-cell><span @click="view_appraisal(member.quarter, member.appraisee_user_id, member.appraisee_user_name  )">View Appraisal</span></md-table-cell>
         </md-table-row>
       </md-table>
     </div>
@@ -65,9 +65,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions(["get_appraisals"]),
-    view_appraisal(quarter, id){
+    view_appraisal(quarter, id, username){
       console.log("running", quarter, id)
       this.$store.dispatch("get_user_appraisal_form", {quarter, id});
+      this.$router.push({ name: 'IndividualUserAppraisal', params: { username: username }})
     }
   },
   computed: {

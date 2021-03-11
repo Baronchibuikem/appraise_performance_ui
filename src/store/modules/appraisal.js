@@ -10,7 +10,8 @@ const state = {
 const getters = {
   allSubTeams: (state) => state.subteam_list,
   allSubTeamMembers: (state) => state.subteam_members,
-  allAppraisals: (state) => state.appraisals
+  allAppraisals: (state) => state.appraisals,
+  singleUserAppraisal: (state) => state.user_appraisal_obj
 };
 
 const actions = {
@@ -68,7 +69,7 @@ const actions = {
     console.log(payload, "showing payload")
     const response = await get_user_appraisal_form(payload)
     console.log(response.data)
-    commit('user_appraisal')
+    commit('user_appraisal', response.data)
   },
   
 };

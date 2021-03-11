@@ -59,15 +59,21 @@ let router =  new Router({
 			},
         },
         {
-            name: "Appraisal List",
+            name: "AppraisalList",
             path: "/appraisals",
             component: () => import("./components/Appraisal/AppraisalList"),
             meta: {
 				requiresAuth: true,
 			},
+        },
+        {
+            name: "IndividualUserAppraisal",
+            path: "/appraisal/:username",
+            component: () => import("./components/Appraisal/IndividualUserAppraisal"),
+            meta: {
+				requiresAuth: true,
+			},
         }
-
-
 
         
     ]
